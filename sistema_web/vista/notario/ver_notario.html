@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>JURADOS REGISTRADOS</title>
+    <link rel="shortcut icon" href="../../assets/logo_municipio_c.png" type="image/x-icon">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../../libs/bootstrap-5.3.1/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <script src="../../libs/jquery.min.js"></script>
+    <script src="../../libs/bootstrap-5.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="../../libs/ajax.js"></script>
+
+    <style>
+        body {
+            background: url('../../assets/administrador/ver_usuarios.png') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .content {
+            position: relative;
+            z-index: 2;
+            background-color: rgba(255, 255, 255, 0.9); 
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .table {
+            background-color: rgba(255, 255, 255, 0.9); 
+            border-radius: 10px;
+            overflow: hidden; 
+        }
+        .table th,
+        .table td {
+            border: 1px solid #ddd; /* Bordes suaves para las celdas */
+        }
+        .table th {
+            background-color: rgba(235, 147, 47, 0.9); /* Fondo azul con transparencia ligera */
+            color: white;
+        }
+    </style>
+
+</head>
+
+<body onload="buscar_notarios('');">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="text-danger">NOTARIOS REGISTRADOS</h2>
+                <div class="d-flex justify-content-end mb-3">
+                    <a href="../administrador/administrador.php" class="btn btn-secondary me-2">Regresar</a>
+                </div>
+                <table id="tabla_nota" name="tabla_nota" class="table table-bordered">
+                    <thead class="bg-primary text-light">
+                        <tr>
+                            <th>N.</th>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
+                            <th>Cedula</th>
+                            <th>Correo</th>
+                            <th>Direccion</th>
+                            <th>Celular</th>
+                            <th>Ocupación:</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+<div class="modal fade" id="eliminarmodald" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-danger text-light">  
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminar</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="../../controlador/notario/eli_notario.php" method="post">
+            <input type="text" id="codigo" name="codigo" hidden>
+            <div class="container">
+                <!--
+                <div class="row">
+                    <label><b>Cedula: </b></label> <input type="text" id="txt_cedula" name="txt_cedula" class="form-control">
+                </div>
+
+                <div class="row">
+                    <label><b>Nombre: </b></label> <input type="text" id="txt_nombre" name="txt_nombre" class="form-control">
+                </div>
+
+                <div class="row">
+                    <label><b>Apellido: </b></label> <input type="text" id="txt_apellido" name="txt_apellido" class="form-control">
+                </div> 
+            -->
+                <div class="row mt-2">
+                    <div class="col-12 text-center">
+                        <span class="text-danger text-center h3">¿Desea eliminar el registro?</span>
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <span class="col-12 text-center"></span>
+                    <button type="submit" id="btn_eliminar" name="btn_eliminar" class="btn btn-danger text-light">Eliminar</button>
+                </div>
+            </div>
+        </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>

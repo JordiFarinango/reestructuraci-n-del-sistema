@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Actualizar Credenciales</title>
+    <link rel="shortcut icon" href="../../assets/logo_municipio_c.png" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../../libs/bootstrap-5.3.1/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <script src="../../libs/jquery.min.js"></script>
+    <script src="../../libs/bootstrap-5.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
+</head>
+<body class="container">
+    <div>
+        <h2 class="text-center">Actualizar Credenciales</h2>
+    </div>
+    <div class="d-flex content-end mb-3">
+        <a href="../jurado/jurado.php" class="btn btn-primary me-2">Regresar</a>
+    </div>
+
+    <form id="form_actualizar" action="../../controlador/jurado/actualizar_credenciales.php" method="post">
+        <div class="mb-3">
+            <label for="usuario" class="form-label">Nuevo Usuario</label>
+            <input type="text" class="form-control" id="usuario" name="usuario" required>
+        </div>
+        <div class="mb-3">
+            <label for="clave" class="form-label">Nueva Clave</label>
+            <input type="password" class="form-control" id="clave" name="clave" required>
+        </div>
+        <button type="submit" class="btn btn-success">Guardar</button>
+    </form>
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                type: 'GET',
+                url: '../../controlador/jurado/obtener_datos_jurado.php',
+                dataType: 'json',
+                success: function(data) {
+                    if (data.success) {
+                        $('#usuario').val(data.usuario);
+                    } else {
+                        alert('Error al obtener datos del jurado');
+                    }
+                }
+            });
+
+            $('#form_actualizar').submit(function(e) {
+                e.preventDefault();
+                var formData = $(this).serialize();
+                $.ajax({
+                    type: 'POST',
+                    url: '../../controlador/jurado/actualizar_credenciales.php',
+                    data: formData,
+                    success: function(response) {
+                        var data = JSON.parse(response);
+                        if (data.success) {
+                            alert('Credenciales actualizadas correctamente');
+                        } else {
+                            alert('Error al actualizar las credenciales');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Web</title>
+    <link rel="shortcut icon" href="../assets/logo_municipio_c.png" type="image/x-icon">
+    <link href="../libs/bootstrap-5.3.1/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <script src="../libs/jquery.min.js"></script>
+    <script src="../libs/bootstrap-5.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="../libs/ajax.js"></script>
+    <style>
+        body {
+            background: url('../assets/parque_central.png') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .content {
+            position: relative;
+            z-index: 2;
+        }
+        .bg-custom {
+            background-color: rgba(255, 255, 255, 0.9); 
+        }
+        .centrado {
+            text-align: center;
+            vertical-align: middle;
+        }
+        .letra-grande {
+            font-size: 1.2rem; 
+        }
+        .footer {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            font-size: 0.9rem;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container content d-flex justify-content-center align-items-center vh-100">
+        <div class="bg-custom p-5 rounded-5 text-secondary shadow" style="width: 25rem;">
+            <div class="d-flex justify-content-center mb-4">
+                <img src="../assets/icono_loggin.png" alt="login-icon" style="height: 7rem"/>
+            </div>
+            <div class="text-center fs-1 fw-bold mb-4">Inicio de Sesión</div>
+            <form id="form-login">
+                <div class="input-group mb-3">
+                    <input class="form-control bg-light" type="text" name="usuario" placeholder="Usuario" required/>
+                </div>
+                <div class="input-group mb-3">
+                    <input class="form-control bg-light" type="password" name="clave" placeholder="Contraseña" required/>
+                </div>
+                <div class="text-danger" id="mensaje_usu"></div>
+                <div class="text-danger" id="mensaje_cla"></div>
+                <div class="text-danger" id="error_message"></div>
+                <button type="submit" class="btn btn-info text-white w-100 mt-4 fw-semibold shadow-sm" id="btn-ingresar">Ingresar</button>
+            </form>
+        </div>
+    </div>
+    <div class="footer">
+        Desarrollado por Vergorio
+    </div>
+    <script>
+        $(document).ready(function() {
+            $('#form-login').submit(function(event) {
+                event.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url: '../controlador/loggin.php',
+                    data: $(this).serialize(),
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.success) {
+                            window.location.href = response.redirect;
+                        } else {
+                            $('#error_message').text(response.message);
+                        }
+                    },
+                    error: function() {
+                        $('#error_message').text('Error al procesar la solicitud.');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

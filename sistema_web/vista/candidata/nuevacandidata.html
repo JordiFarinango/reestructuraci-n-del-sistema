@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Nueva Candidata</title>
+    <link rel="shortcut icon" href="../../assets/logo_municipio_c.png" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../../libs/bootstrap-5.3.1/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <script src="../../libs/bootstrap-5.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="../../libs/jquery.min.js"></script>
+    <script src="../../libs/ajax.js"></script>
+    <style>
+        body {
+            background: url('../../assets/administrador/nuevos_usuarios.png') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .content {
+            position: relative;
+            z-index: 2;
+            background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con transparencia ligera */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container content">
+        <div>
+            <h2 class="text-success">Nueva Candidata</h2>
+        </div>
+        <div class="d-flex justify-content-end mb-3">
+            <a href="../administrador/administrador.php" class="btn btn-primary me-2">Regresar</a>
+        </div>
+        <form action="../../controlador/candidata/ins.candidata.php" method="post" enctype="multipart/form-data">
+            <div class="form-group row">
+                <label class="col-2">Nombres</label>
+                <input type="text" class="form-control col-4" name="txt_nombre" id="txt_nombre">
+            </div>
+            <div class="form-group row">
+                <label class="col-2">Apellidos</label>
+                <input type="text" class="form-control col-4" name="txt_apellido" id="txt_apellido">
+            </div>
+            <div class="form-group row">
+                <label class="col-2">Cédula o RUC</label>
+                <input type="number" class="form-control col-4" name="txt_cedula" id="txt_cedula" minlength="1" maxlength="13" title="" onblur="vcedula(this.value);">
+                <div class="text-danger col-2" name="mensaje" id="mensaje"></div>
+            </div>
+            <div class="form-group row">
+                <label class="col-2">Correo</label>
+                <input type="text" class="form-control col-4" name="txt_correo" id="txt_correo">
+            </div>
+            <div class="form-group row">
+                <label class="col-2">Teléfono</label>
+                <input type="number" class="form-control col-4" name="txt_telefono" id="txt_telefono">
+            </div>
+            <div class="form-group row">
+                <label class="col-2">Dirección</label>
+                <input type="text" class="form-control col-4" name="txt_direccion" id="txt_direccion">
+            </div>
+            <div class="form-group row">
+                <label class="col-5">¿A qué institución representa?</label>
+                <input type="text" class="form-control col-4" name="txt_representa" id="txt_representa">
+            </div>
+            <div class="form-group row">
+                <label class="col-2">Imagen</label>
+                <input type="file" class="form-control col-4" name="imagen_candidata" id="imagen_candidata">
+            </div>
+            <br>
+            <div class="form-group row">
+                <div class="col-2">
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
