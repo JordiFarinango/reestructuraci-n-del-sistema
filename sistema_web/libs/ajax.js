@@ -404,25 +404,32 @@ function contar(usuario) {
  
  
  function vcedulausu(cedula) {
-     var fd = new FormData();
-     fd.append('valor', cedula);
-     $.ajax({
-         type: 'POST',
-         url: '../../controlador/v_cedula_usu.php',
-         data: fd,
-         cache: false,
-         contentType: false,
-         processData: false
-     })
-     .done(function(data) {
-         $("#mensaje").html(data);
-     })
-     .fail(function() {
-         alert("Error al procesar la información.");
-     });
-     return false;
- }
- 
+    var fd = new FormData();
+    fd.append('valor', cedula);
+    $.ajax({
+        type: 'POST',
+        url: '../../controlador/v_cedula_usu.php',
+        data: fd,
+        cache: false,
+        contentType: false,
+        processData: false
+    })
+    .done(function(data) {
+        // Mostrar el mensaje solo si la cédula ya está registrada
+        if (data.trim() === "Cédula ya registrada en el sistema") {
+            $("#mensaje").html(data);
+        } else {
+            // Limpiar el mensaje si la cédula es válida
+            $("#mensaje").html("");
+        }
+    })
+    .fail(function() {
+        alert("Error al procesar la información.");
+    });
+    return false;
+}
+
+
  
  
  function esEntero(numero) {

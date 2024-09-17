@@ -38,7 +38,7 @@ $row = $objp->ConsultarDato($_GET['valor']);
         </style>
     </head>
     <body class="container">
-        <div class="content"> <!-- Añadido -->
+        <div class="content"> 
             <form action="../../controlador/jurado/act_jurado.php" method="post">
                 <input hidden type="text" id="txt_idjurados" name="txt_idjurados" value="<?php echo $row['id_usuario']; ?>">
                 <div>
@@ -92,6 +92,6 @@ $row = $objp->ConsultarDato($_GET['valor']);
                     </div>
                 </div>
             </form>
-        </div> <!-- Añadido -->
+        </div> 
     </body>
 </html>

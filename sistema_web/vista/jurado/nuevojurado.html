@@ -17,17 +17,17 @@
         .content {
             position: relative;
             z-index: 2;
-            background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con transparencia ligera */
+            background-color: rgba(255, 255, 255, 0.9);
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
         }
-
     </style>
 </head>
 <body>
     <div class="container content">
-        <form action="../../controlador/jurado/ins_jurado.php" method="post">
+        <form id="form-nuevo-jurado" action="../../controlador/jurado/ins_jurado.php" method="post">
             <div>
                 <h2 class="text-success">Nuevo Jurado</h2>
             </div>
@@ -37,48 +37,48 @@
             <div class="container">
                 <div class="form-group row">
                     <label class="col-2">Nombres</label>
-                    <input type="text" class="form-control col-4" name="txt_nombre" id="txt_nombre">
+                    <input type="text" class="form-control col-4" name="txt_nombre" id="txt_nombre" required> 
                 </div>
 
                 <div class="form-group row">
                     <label class="col-2">Apellidos</label>
-                    <input type="text" class="form-control col-4" name="txt_apellido" id="txt_apellido">
+                    <input type="text" class="form-control col-4" name="txt_apellido" id="txt_apellido" required>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-2">Cédula o RUC</label>
-                    <input type="number" class="form-control col-4" name="txt_cedula" id="txt_cedula" minlength="1" maxlength="13" title="" onblur="vcedulausu(this.value);">
-                    <div class="text-danger col-2" name="mensaje" id="mensaje"></div>
+                    <input type="number" class="form-control col-4" name="txt_cedula" id="txt_cedula" minlength="1" maxlength="13" onblur="vcedulausu(this.value);" required>
+                    <div class="text-danger col-2" id="mensaje"></div> <!-- Mensaje de validación -->
                 </div>
 
                 <div class="form-group row">
                     <label class="col-2">Correo</label>
-                    <input type="text" class="form-control col-4" name="txt_correo" id="txt_correo">
+                    <input type="text" class="form-control col-4" name="txt_correo" id="txt_correo" required>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-2">Dirección</label>
-                    <input type="text" class="form-control col-4" name="txt_direccion" id="txt_direccion">
+                    <input type="text" class="form-control col-4" name="txt_direccion" id="txt_direccion" required>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-2">Teléfono</label>
-                    <input type="number" class="form-control col-4" name="txt_telefono" id="txt_telefono">
+                    <input type="number" class="form-control col-4" name="txt_telefono" id="txt_telefono" required>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-2">Ocupación</label>
-                    <input type="text" class="form-control col-4" name="txt_ocupacion" id="txt_ocupacion">
+                    <input type="text" class="form-control col-4" name="txt_ocupacion" id="txt_ocupacion" required>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-2">Usuario</label>
-                    <input type="text" class="form-control col-4" name="txt_usuario" id="txt_usuario">
+                    <input type="text" class="form-control col-4" name="txt_usuario" id="txt_usuario" required>
                 </div>
 
                 <div class="form-group row">
                     <label class="col-2">Clave</label>
-                    <input type="password" class="form-control col-4" name="txt_clave" id="txt_clave">
+                    <input type="password" class="form-control col-4" name="txt_clave" id="txt_clave" required>
                 </div>
 
                 <input type="hidden" name="rol_id_re" id="rol_id_re" value="2">
@@ -92,5 +92,16 @@
             </div>
         </form>
     </div>
+
+    <script>
+        // Validación al intentar enviar el formulario
+        $('#form-nuevo-jurado').submit(function(event) {
+            var mensaje = $('#mensaje').text().trim();
+            if (mensaje !== "") {
+                event.preventDefault(); // Evita que el formulario se envíe
+                alert("Debe cambiar la cédula. Ya está registrada.");
+            }
+        });
+    </script>
 </body>
 </html>

@@ -10,17 +10,6 @@
     <script src="../../libs/bootstrap-5.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
     <script src="../../libs/ajax.js"></script>
     <style>
-        .calificado {
-            background-color: #d4edda;
-        }
-        .centrado {
-            text-align: center;
-            vertical-align: middle;
-        }
-        .grande {
-            font-size: 2.5rem; /* Tamaño de letra aumentado */
-        }
-
         body {
             background: url('../../assets/cayambe.png') no-repeat center center fixed;
             background-size: cover;
@@ -28,13 +17,44 @@
         .content {
             position: relative;
             z-index: 2;
-            background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco con transparencia */
+            background-color: rgba(255, 255, 255, 0.8);
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        .letra-grande {
-            font-size: 1.2rem; /* Tamaño de letra aumentado */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 columnas */
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .grid-item {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 10px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .grid-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .grid-item h4, .grid-item p {
+            margin: 10px 0;
+            text-align: center;
+        }
+        .grid-item .numero-candidata {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .btn-votar {
+            margin-top: 10px;
+            width: 100%;
         }
     </style>
 </head>
@@ -51,20 +71,10 @@
         <div class="d-flex content-end mb-3">
             <button type="button" class="btn btn-warning me-2" onclick="location.href='../jurado/actualizar_jurado.html'">Actualizar Credenciales</button>
         </div>
-        <table class="table table-bordered">
-            <thead class="bg-primary text-light">
-                <tr>
-                    <th class="centrado">N.</th>
-                    <th class="centrado">Candidata</th>
-                    <th class="centrado">Nombres</th>
-                    <th class="centrado">Apellidos</th>
-                    <th class="centrado">Votar</th>
-                </tr>
-            </thead>
-            <tbody id="tabla_candire">
-                <!-- Filas agregadas dinámicamente -->
-            </tbody>
-        </table>
+
+        <div class="grid-container" id="tabla_candire">
+            <!-- Candidatas generadas dinámicamente -->
+        </div>
     </div>
     <script>
         function obtenerNombreJurado() {
@@ -101,7 +111,6 @@
             })
             .done(function(data) {
                 $("#tabla_candire").html(data);
-                // Marcar las candidatas completamente calificadas
                 marcarCandidatasCalificadas();
             })
             .fail(function() {
@@ -111,7 +120,7 @@
         }
 
         function marcarCandidatasCalificadas() {
-            $('#tabla_candire tr').each(function() {
+            $('#tabla_candire .grid-item').each(function() {
                 var parametrosCalificados = $(this).find('.parametro-calificado');
                 var totalParametros = parametrosCalificados.length;
                 var calificados = parametrosCalificados.filter(function() {

@@ -21,6 +21,8 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px; /* Esto reduce el ancho total de la caja del formulario */
+
         }
     </style>
 </head>
@@ -35,36 +37,36 @@
         <form action="../../controlador/candidata/ins.candidata.php" method="post" enctype="multipart/form-data">
             <div class="form-group row">
                 <label class="col-2">Nombres</label>
-                <input type="text" class="form-control col-4" name="txt_nombre" id="txt_nombre">
+                <input type="text" class="form-control col-4" name="txt_nombre" id="txt_nombre" required>
             </div>
             <div class="form-group row">
                 <label class="col-2">Apellidos</label>
-                <input type="text" class="form-control col-4" name="txt_apellido" id="txt_apellido">
+                <input type="text" class="form-control col-4" name="txt_apellido" id="txt_apellido" required>
             </div>
             <div class="form-group row">
                 <label class="col-2">Cédula o RUC</label>
-                <input type="number" class="form-control col-4" name="txt_cedula" id="txt_cedula" minlength="1" maxlength="13" title="" onblur="vcedula(this.value);">
+                <input type="number" class="form-control col-4" name="txt_cedula" id="txt_cedula" minlength="1" maxlength="13" title="" onblur="vcedula(this.value);" required>
                 <div class="text-danger col-2" name="mensaje" id="mensaje"></div>
             </div>
             <div class="form-group row">
                 <label class="col-2">Correo</label>
-                <input type="text" class="form-control col-4" name="txt_correo" id="txt_correo">
+                <input type="text" class="form-control col-4" name="txt_correo" id="txt_correo" required>
             </div>
             <div class="form-group row">
                 <label class="col-2">Teléfono</label>
-                <input type="number" class="form-control col-4" name="txt_telefono" id="txt_telefono">
+                <input type="number" class="form-control col-4" name="txt_telefono" id="txt_telefono" required>
             </div>
             <div class="form-group row">
                 <label class="col-2">Dirección</label>
-                <input type="text" class="form-control col-4" name="txt_direccion" id="txt_direccion">
+                <input type="text" class="form-control col-4" name="txt_direccion" id="txt_direccion" required>
             </div>
             <div class="form-group row">
                 <label class="col-5">¿A qué institución representa?</label>
-                <input type="text" class="form-control col-4" name="txt_representa" id="txt_representa">
+                <input type="text" class="form-control col-4" name="txt_representa" id="txt_representa" required>
             </div>
             <div class="form-group row">
                 <label class="col-2">Imagen</label>
-                <input type="file" class="form-control col-4" name="imagen_candidata" id="imagen_candidata">
+                <input type="file" class="form-control col-4" name="imagen_candidata" id="imagen_candidata" required>
             </div>
             <br>
             <div class="form-group row">

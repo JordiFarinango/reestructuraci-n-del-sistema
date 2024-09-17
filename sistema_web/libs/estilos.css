@@ -1,0 +1,31 @@
+/* Estilos específicos para loggin.html */
+.loggin-page body {
+    background: url('../assets/parque_central.png') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.loggin-page .content {
+    position: relative;
+    z-index: 2;
+}
+
+.loggin-page .bg-custom {
+    background-color: rgba(255, 255, 255, 0.9); 
+}
+
+.loggin-page .centrado {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.loggin-page .letra-grande {
+    font-size: 1.2rem; 
+}
+
+.loggin-page .footer {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-size: 0.9rem;
+    color: #ffffff;
+}
