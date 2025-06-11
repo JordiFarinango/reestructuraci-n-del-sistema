@@ -102,12 +102,15 @@ $roles = [
     "Reina del Cantón Cayambe",
     "Virreina del Cantón Cayambe",
     "Señorita Turismo",
-    "Señorita Simpatía"
+    "Señorita Simpatía",
+    "Señorita Confraternidad",
+    "Señorita Interculturalidad",
+    "Señorita San Pedro",
 ];
 
 $i = 1;
 foreach ($candidatas as $candidata => $total) {
-    if ($i <= 4) {
+    if ($i <= 7) {
         $pdf->ChapterTitle("{$i}. {$candidata} - {$roles[$i - 1]} - Total: {$total}");
         
         foreach ($jurados_totales[$candidata] as $jurado => $total_jurado) {
